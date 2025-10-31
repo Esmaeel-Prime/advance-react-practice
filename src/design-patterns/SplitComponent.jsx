@@ -2,24 +2,21 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
-  background-color: lightblue;
+  margin: 2px;
 `;
 const Panel = styled.div`
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  flex: ${(p) => p.flex};
+  background-color: greenyellow;
+  border-left: 2px solid black;
 `;
 
-export const SplitComponent = ({ Left, Right }) => {
+export const SplitComponent = ({ children, leftWidth = 1, rightWidth = 1 }) => {
+  const [left, right] = children;
+
   return (
     <Container>
-      <Panel>
-        <Left />
-      </Panel>
-      <Panel>
-        <Right />
-      </Panel>
+      <Panel flex={leftWidth}>{left}</Panel>
+      <Panel flex={rightWidth}>{right}</Panel>
     </Container>
   );
 };
